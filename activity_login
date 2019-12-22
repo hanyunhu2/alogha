@@ -61,6 +61,8 @@
         android:background="@drawable/btn_blue"
         android:paddingLeft="12dp"
         android:paddingRight="12dp"
+        android:clickable="true"
+        android:layout_marginBottom="16dp"
         >
         <ImageView
             android:layout_width="30dp"
@@ -80,6 +82,38 @@
             />
 
     </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="@drawable/btn_blue"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:clickable="true"
+        android:weightSum="1"
+        >
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:text="Login"
+            android:textColor="#ffffff"
+            android:background="@null"
+            android:layout_weight="1"
+            />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@null"
+            android:src="@drawable/icon_arrow"
+            android:layout_gravity="center"
+            />
+
+    </LinearLayout>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -98,6 +132,7 @@
         android:background="@drawable/btn_dart_blue"
         android:paddingLeft="12dp"
         android:paddingRight="12dp"
+        android:clickable="true"
         >
         <ImageView
             android:layout_width="30dp"
