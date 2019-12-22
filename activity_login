@@ -61,7 +61,6 @@
         android:background="@drawable/btn_blue"
         android:paddingLeft="12dp"
         android:paddingRight="12dp"
-        android:clickable="true"
         android:layout_marginBottom="16dp"
         >
         <ImageView
@@ -77,6 +76,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:text="Login"
+            android:clickable="false"
             android:textColor="#ffffff"
             android:background="@null"
             />
