@@ -35,4 +35,29 @@ android.enableJetifier=true
 Android 플러그인에서 자동으로 기존 타사 라이브러리를 이전하여 바이너리를 다시 작성해 AndroidX를 사용합니다.
 
 
+textinputlayout androidx
+Textinputlayout in Androidx | TextinputEdittext with Android Studio | Android Jetpack
+
+https://www.youtube.com/watch?v=09EsYJrhBYE
+
+1. bluild.gradle : Moudle:app
+implementation 'com.google.android.material:material:1.0.0'
+
+2.xml
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Password"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+    
+
+
+
 
