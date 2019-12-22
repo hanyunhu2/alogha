@@ -1,0 +1,79 @@
+
+public class MainActivity extends AppCompatActivity {
+    TextInputLayout text_input_layout1,text_input_layout2;
+    TextInputEditText text_input_edit1,text_input_edit2;
+    Button btn_submit1;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
+        text_input_layout1 = (TextInputLayout) findViewById(R.id.text_input_layout1);
+        text_input_layout2 = (TextInputLayout) findViewById(R.id.text_input_layout2);
+        text_input_edit1 = (TextInputEditText) findViewById(R.id.text_input_edit1);
+        text_input_edit2 = (TextInputEditText) findViewById(R.id.text_input_edit2);
+        btn_submit1 =(Button) findViewById(R.id.btn_submit1);
+        btn_submit1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //
+                submitForm();
+            }
+        });
+
+
+    }
+    public void requestFocus(View view)
+    {
+        if(view.requestFocus())
+        {
+            getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+        }
+    }
+    private boolean validate_edit1()
+    {
+        if(text_input_edit1.getText().toString().trim().isEmpty())
+        {
+            text_input_edit1.setError("Enter Email.");
+        }
+        else
+        {
+            if(text_input_edit1.getText().toString().trim().length()<3)
+            {
+                text_input_edit1.setError("Mininum 3 charaters.");
+                requestFocus(text_input_edit1);
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean validate_edit2()
+    {
+        if(text_input_edit2.getText().toString().trim().isEmpty())
+        {
+            text_input_edit2.setError("Enter Password.");
+        }
+        else
+        {
+            if(text_input_edit2.getText().toString().trim().length()<10)
+            {
+                text_input_edit2.setError("Mininum 10 charaters.");
+                requestFocus(text_input_edit2);
+                return false;
+            }
+        }
+        return true;
+    }
+    private void submitForm()
+    {
+        if(!validate_edit1()){
+            return;
+        }
+        if(!validate_edit2()){
+            return;
+        }
+        String edit1 = text_input_edit1.getText().toString().trim()+"";
+        String edit2 = text_input_edit2.getText().toString().trim()+"";
+        Toast.makeText(getApplicationContext(), edit1+"\n" + edit2, Toast.LENGTH_SHORT).show();
+    }
+}
