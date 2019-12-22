@@ -1,8 +1,31 @@
+package com.example.ex_01_layout;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.Toast;
+
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 public class MainActivity extends AppCompatActivity {
     TextInputLayout text_input_layout1,text_input_layout2;
     TextInputEditText text_input_edit1,text_input_edit2;
     Button btn_submit1;
+    String emailOK = "1234@gmail.com";
+    String passwordOK ="1234";
+
+    String inputEmail ="";
+    String inputPasswrod ="";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -11,16 +34,91 @@ public class MainActivity extends AppCompatActivity {
         text_input_layout2 = (TextInputLayout) findViewById(R.id.text_input_layout2);
         text_input_edit1 = (TextInputEditText) findViewById(R.id.text_input_edit1);
         text_input_edit2 = (TextInputEditText) findViewById(R.id.text_input_edit2);
-        btn_submit1 =(Button) findViewById(R.id.btn_submit1);
+        btn_submit1 = (Button) findViewById(R.id.btn_submit1);
+        btn_submit1.setClickable(false);
+
+        // 1. 값을 가져온다 : 검사 (1234@gmail.com / 1234 )
+        // 2. 클릭을 감지한다.
+        // 3. 1번의 값을 당ㅁ 엑티비티로 넘긴다.
+
+        text_input_edit1.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // Log.d("SENTI",s+"," + count);
+
+                if(s !=null){
+                    Log.d("SENTI",s.toString());
+                    inputEmail =s.toString();
+                    btn_submit1.setEnabled(validation());
+                    // btn_submit1.setClickable(validation());
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        text_input_edit2.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // Log.d("SENTI",s+"," + count);
+                if(s !=null){
+                    Log.d("SENTI",s.toString());
+                    inputPasswrod =s.toString();
+                    btn_submit1.setEnabled(validation());
+                    // btn_submit1.setClickable(validation());
+                }
+
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        // 클릭을 감지한다.
         btn_submit1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //
-                submitForm();
+                Log.d("SENTI", "onClick");
+                String edit1 = text_input_edit1.getText().toString().trim()+"";
+                String edit2 = text_input_edit2.getText().toString().trim()+"";
+                Toast.makeText(getApplicationContext(), edit1+"\n" + edit2, Toast.LENGTH_SHORT).show();
+
+                if(validation()){
+                    Log.d("SENTI","validation ok");
+                    Intent intent = new Intent(MainActivity.this,LoginResultActivity.class);
+                    intent.putExtra("email",edit1);
+                    intent.putExtra("password",edit2);
+                    startActivity(intent);
+
+                }
+
+                // submitForm();
             }
         });
 
 
+    }
+    public boolean validation()
+    {
+        Log.d("SENTI",inputEmail+" / " + inputPasswrod + "  // " + inputEmail.equals(emailOK) +" / " + inputPasswrod.equals(passwordOK) );
+        // return inputEmail == emailOK && inputPasswrod == passwordOK;
+        return inputEmail.equals(emailOK) && inputPasswrod.equals(passwordOK);
     }
     public void requestFocus(View view)
     {
